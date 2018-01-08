@@ -3,25 +3,18 @@ package com.example.mikhan808.svarka;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.*;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements OnTouchListener {
+public class UpActivity extends AppCompatActivity implements View.OnTouchListener {
 
-    Integer[] digits = new Integer[10];
     float startX, endX, startY, endY;
+    float delta = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        for (int i = 0; i < 10; i++)
-            digits[i] = i;
+        setContentView(R.layout.activity_up);
         View view = findViewById(R.id.linear);
         view.setOnTouchListener(this);
     }
@@ -36,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements OnTouchListener {
                 startY = y;
                 break;
             case MotionEvent.ACTION_MOVE: // движение
-                //sMove = "Move: " + x + "," + y;
                 break;
             case MotionEvent.ACTION_UP: // отпускание
             case MotionEvent.ACTION_CANCEL:
@@ -45,16 +37,16 @@ public class MainActivity extends AppCompatActivity implements OnTouchListener {
                 int direction = Swipe.getDirection(startX, startY, endX, endY);
                 switch (direction) {
                     case Swipe.UP:
-                        Intent intent = new Intent(this, UpActivity.class);
+                    case Swipe.DOWN:
+                        Intent intent = new Intent(this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         break;
-                    case Swipe.DOWN:
                     case Swipe.RIGHT:
                     case Swipe.LEFT:
                     default:
                         break;
                 }
-                break;
         }
         return true;
     }
