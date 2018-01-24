@@ -1,15 +1,11 @@
 package com.example.mikhan808.svarka;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.*;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.view.View.OnTouchListener;
 
 public class MainActivity extends AppCompatActivity implements OnTouchListener {
 
@@ -22,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements OnTouchListener {
         setContentView(R.layout.activity_main);
         for (int i = 0; i < 10; i++)
             digits[i] = i;
-        View view = findViewById(R.id.linear);
+        View view = findViewById(R.id.viewMain);
         view.setOnTouchListener(this);
     }
 
